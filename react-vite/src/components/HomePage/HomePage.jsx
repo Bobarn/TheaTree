@@ -9,7 +9,7 @@ export default function HomePage() {
     const currUser = useSelector((state) => state.session.user);
 
     useEffect(() => {
-        // Add in code to send fetch and retrieve information from the movies database
+        dispatch(thunkGetCsv());
     }, [dispatch])
 
     if(!currUser) navigate('/')

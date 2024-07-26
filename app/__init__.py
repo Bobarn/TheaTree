@@ -92,7 +92,7 @@ def react_root(path):
         return app.send_from_directory('public', 'favicon.ico')
     return app.send_static_file('index.html')
 
-@app.route('/csv')
+@app.route('/api/csv')
 def csvToHTML():
 
     data = pd.read_csv("netflix_dataset.csv")
