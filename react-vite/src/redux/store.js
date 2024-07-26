@@ -6,9 +6,11 @@ import {
 } from "redux";
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
+import csvReducer from "./csv";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
+  csv: csvReducer,
 });
 
 let enhancer;

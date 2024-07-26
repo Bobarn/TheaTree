@@ -13,9 +13,9 @@ import pandas as pd
 
 ALLOWED_EXTENSIONS = set(['csv'])
 
-df = pd.read_csv('netflix_dataset.csv')
+# df = pd.read_csv('netflix_dataset.csv')
 
-df.to_csv('netflix_dataset.csv', index=False)
+# df.to_csv('netflix_dataset.csv', index=False)
 
 app = Flask(__name__, static_folder='../react-vite/dist', static_url_path='/')
 
@@ -92,12 +92,13 @@ def react_root(path):
         return app.send_from_directory('public', 'favicon.ico')
     return app.send_static_file('index.html')
 
-@app.route('/')
+@app.route('/csv')
 def csvToHTML():
 
     data = pd.read_csv("netflix_dataset.csv")
+    print("We are here ", data)
 
-    return render_template("index.html", tables=[data.to_html()],titles=['na', 'Netflix Dataset'])
+    # return render_template("index.html", tables=[data.to_html()],titles=['na', 'Netflix Dataset'])
 
 @app.errorhandler(404)
 def not_found(e):
