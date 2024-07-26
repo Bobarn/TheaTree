@@ -1,6 +1,5 @@
 import os
 from flask import Flask, render_template, request, session, redirect, url_for
-from werkzeug.utils import secure_filename
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
@@ -10,8 +9,13 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .seeds import seed_commands
 from .config import Config
+import pandas as pd
 
 ALLOWED_EXTENSIONS = set(['csv'])
+
+df = pd.read_csv('netflix_dataset.csv')
+
+df.to_csv('netflix_dataset.csv', index=False)
 
 app = Flask(__name__, static_folder='../react-vite/dist', static_url_path='/')
 
@@ -88,6 +92,12 @@ def react_root(path):
         return app.send_from_directory('public', 'favicon.ico')
     return app.send_static_file('index.html')
 
+@app.route('/')
+def csvToHTML():
+
+    data = pd.read_csv("netflix_dataset.csv")
+
+    return render_template("index.html", tables=[data.to_html()],titles=['na', 'Netflix Dataset'])
 
 @app.errorhandler(404)
 def not_found(e):
