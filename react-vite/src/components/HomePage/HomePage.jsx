@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { thunkGetCsv } from '../../redux/csv';
 import "./HomePage.css"
 
 export default function HomePage() {
