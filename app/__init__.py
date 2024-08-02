@@ -9,6 +9,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .seeds import seed_commands
 from .config import Config
+import sys
 import pandas as pd
 
 ALLOWED_EXTENSIONS = set(['csv'])
@@ -94,11 +95,11 @@ def react_root(path):
 
 @app.route('/api/csv')
 def csvToHTML():
-
+    # print('Hello world!', file=sys.stdout)
     data = pd.read_csv("netflix_dataset.csv")
-    print("We are here ", data)
 
-    # return render_template("index.html", tables=[data.to_html()],titles=['na', 'Netflix Dataset'])
+    return {"data": data}
+
 
 @app.errorhandler(404)
 def not_found(e):

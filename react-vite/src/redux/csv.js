@@ -9,10 +9,14 @@ const setCsv = (csv) => ({
 
 export const thunkGetCsv = () => async (dispatch) => {
     const response = await fetch("/api/csv/");
+    console.log(response)
 
     if(response.ok) {
         const data = await response.json();
+        console.log(data);
         dispatch(setCsv(data));
+    } else {
+        console.log("Reached an error")
     }
 }
 
