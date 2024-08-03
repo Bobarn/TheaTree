@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for, json
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
@@ -95,11 +95,14 @@ def react_root(path):
 
 @app.route('/api/csv')
 def csvToHTML():
-    movies_df = pd.read_csv(r"/home/bobarn/appacademy/Week-20+Projects/TheaTree/app/netflix_dataset.csv", sep=',')
-    json_output = r'/home/bobarn/appacademy/Week-20+Projects/TheaTree/app/netflix_df.json'
-    output = movies_df.to_json(json_output)
 
-    return {"data": movies_df}
+    filename = os.path.join(app.static_folder, 'data', 'test_data.json')
+
+    with open(filename) as test_file:
+        data = json.load(test_file)
+        test_file.close()
+
+    return {"Movies": data}, 200
 
 
 @app.errorhandler(404)
