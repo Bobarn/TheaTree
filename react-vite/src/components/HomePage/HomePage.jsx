@@ -8,12 +8,18 @@ export default function HomePage() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const currUser = useSelector((state) => state.session.user);
+    const data = useSelector((state) => state.csv.data);
 
     useEffect(() => {
         dispatch(thunkGetCsv());
+        console.log('HomePage: thunkGetCsv()', )
     }, [dispatch])
 
     if(!currUser) navigate('/')
+
+    console.log('HomePage: currUser', currUser)
+
+    console.log('HomePage: data', data)
 
     return (
         <>
