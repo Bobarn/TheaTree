@@ -27,6 +27,14 @@ export default function HomePage() {
             <h1>
                 Welcome to TheaTree~!
             </h1>
+            <div>
+                {data && data.map((row, idx) => (
+                    <div key={idx}>
+                        <p>{row}</p>
+                    </div>
+                ))
+                }
+            </div>
         </div>
         </>
     )

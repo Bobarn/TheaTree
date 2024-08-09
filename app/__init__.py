@@ -10,7 +10,7 @@ from .api.auth_routes import auth_routes
 from .seeds import seed_commands
 from .config import Config
 import sys
-import pandas as pd
+# import pandas as pd
 
 ALLOWED_EXTENSIONS = set(['csv'])
 
@@ -96,7 +96,7 @@ def react_root(path):
 @app.route('/api/csv')
 def csvToHTML():
 
-    filename = os.path.join(app.static_folder, 'data', 'test_data.json')
+    filename = os.path.join(app.static_folder, 'data', 'netflix_df.json')
 
     with open(filename) as test_file:
         data = json.load(test_file)
